@@ -2,7 +2,7 @@ from graphics import Line, Point
 
 
 class Cell:
-    def __init__(self, window):
+    def __init__(self, win=None):
         self.has_left_wall = True
         self.has_right_wall = True
         self.has_top_wall = True
@@ -11,7 +11,7 @@ class Cell:
         self._x2 = None
         self._y1 = None
         self._y2 = None
-        self._win = window
+        self._win = win
 
     def draw(self, top_left_x, top_left_y, bottom_right_x, bottom_right_y):
         self._x1 = top_left_x
@@ -25,14 +25,30 @@ class Cell:
 
         if self._win == None:
             return
+
         if self.has_top_wall:
-            self._win.draw_line(Line(top_left, top_right))
-        if self.has_right_wall:
-            self._win.draw_line(Line(top_right, bottom_right))
-        if self.has_bottom_wall:
-            self._win.draw_line(Line(bottom_right, bottom_left))
+            color = "black"
+        else:
+            color = "white"
+        self._win.draw_line(Line(top_left, top_right), color)
+
         if self.has_left_wall:
-            self._win.draw_line(Line(bottom_left, top_left))
+            color = "black"
+        else:
+            color = "white"
+        self._win.draw_line(Line(top_right, bottom_right), color)
+
+        if self.has_bottom_wall:
+            color = "black"
+        else:
+            color = "white"
+        self._win.draw_line(Line(bottom_right, bottom_left), color)
+
+        if self.has_left_wall:
+            color = "black"
+        else:
+            color = "white"
+        self._win.draw_line(Line(bottom_left, top_left), color)
 
     def draw_move(self, to_cell, undo=False):
         if not undo:

@@ -12,6 +12,7 @@ class Cell:
         self._y1 = None
         self._y2 = None
         self._win = win
+        self.visited = False
 
     def draw(self, top_left_x, top_left_y, bottom_right_x, bottom_right_y):
         self._x1 = top_left_x

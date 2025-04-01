@@ -33,7 +33,7 @@ class Cell:
             color = "white"
         self._win.draw_line(Line(top_left, top_right), color)
 
-        if self.has_left_wall:
+        if self.has_right_wall:
             color = "black"
         else:
             color = "white"
